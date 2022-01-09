@@ -1,23 +1,69 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
-This project was bootstrapped with Fastify-CLI.
+## Fastify, TypeScript, Prisma, Docker Start Files
 
-## Available Scripts
+### Setup
 
-In the project directory, you can run:
+1. Clone the repository
+   ```
+   git clone git@github.com:AbhinavRajesh/Fastify-TypeScript-Prisma-Docker-Starterfiles.git <FOLDER_NAME>
+   ```
+2. Move into the directory
 
-### `npm run dev`
+   ```
+   cd <FOLDER_NAME>
+   ```
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. Install the dependencies
 
-### `npm start`
+   ```
+   yarn
+   ```
 
-For production mode
+4. Install the required extensions (Would be recommended by VSCode)
 
-### `npm run test`
+   ```
+   Prettier
+   Eslint
+   Prisma
+   Triggertaskonsave
+   ```
 
-Run the test cases.
+5. Install Docker from [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
-## Learn More
+### Scripts
 
-To learn Fastify, check out the [Fastify documentation](https://www.fastify.io/docs/latest/).
+1. Build and run
+
+   ```
+   docker-compose build web
+   ```
+
+   ```
+   docker-compose rm -fs web
+   ```
+
+   ```
+   docker-compose up
+   ```
+
+2. For rebuilding run
+
+   ```
+   yarn rebuild:web
+   ```
+
+3. Migrations
+
+   ```
+   yarn docker:db:migrate
+   ```
+
+4. Get postgres console
+
+   ```
+   yarn db:console
+   ```
+
+5. For checking running docker instances
+   ```
+   docker-compose ps
+   ```
