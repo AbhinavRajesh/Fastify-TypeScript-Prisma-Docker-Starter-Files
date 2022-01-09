@@ -1,9 +1,37 @@
+import { PrismaClient } from "@prisma/client";
 import Fastify from "fastify";
+import { nanoid } from "nanoid";
 
 const fastify = Fastify({ logger: true });
+const db = new PrismaClient({ log: ["error", "info", "query", "warn"] });
+
+const genId = () => nanoid(16);
+
+const seedData = async () => {
+  if ((await db.user.count()) === 0) {
+    await Promise.all([
+      db.user.create({
+        data: {
+          id: genId(),
+          email: "test1@test.com",
+          name: "Test 1",
+        },
+      }),
+      db.user.create({
+        data: {
+          id: genId(),
+          email: "test2@test.com",
+          name: "Test 2",
+        },
+      }),
+    ]);
+  }
+};
+
+seedData();
 
 fastify.get("/", async () => {
-  return { hello: "world" };
+  return db.user.findMany();
 });
 
 const PORT = process.env.PORT ?? 8080;
